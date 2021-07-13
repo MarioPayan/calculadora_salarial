@@ -11,33 +11,27 @@ enum arlType {
     risk5 = 0.06960,
 }
 
-
-
 const salary = 20000000
 let salaryCurrency = 0 //0 cop 1 usd
-let trm = 3850.46
+let trm = 3850.46 //TODO: Debe de traerse online, despues miramos eso
 let workedDays = 30 //Hallar diferencia entre fechas
 let SMMLV = 908526
-let fsp: number //Fondo de solidad pensional
 
-
-//indices: Ordinario 0, integral 1, independiente 2
 enum typeOfSalary {
     INDEPENDIENTE = 0.4,
     INTEGRAL = 0.7,
     ORDINARIO = 1
 }
 
-const baseSalary = (salary: number, type: keyof typeof typeOfSalary) => salary * typeOfSalary[type]
+const getPaymentBasis = (salary: number, type: keyof typeof typeOfSalary) => salary * typeOfSalary[type]
 
-///SOlo para mostrar base en console
-let showBaseSalary = baseSalary(salary, "INDEPENDIENTE")
+let paymentBasis = getPaymentBasis(salary, "INDEPENDIENTE")
 
-const netSalary = (salary: number, type: number) => {
+const netSalary = (salary: number, type: keyof typeof typeOfSalary) => {
+    let preNetSalary = getPaymentBasis(salary, type)
 
-    let preNetSalary = baseSalary(salary, "INDEPENDIENTE")
-
-    return salary + workVacation(preNetSalary)
+    return salary
+        + workVacation(preNetSalary)
         + holidayBonus(preNetSalary)
         + severance(preNetSalary)
         + interestOnServerancePay(preNetSalary)
@@ -45,8 +39,6 @@ const netSalary = (salary: number, type: number) => {
         - health(preNetSalary)
         - psf(salary)
         - retf(preNetSalary)
-
-
 }
 
 const workVacation = (preNetSalary: number) => preNetSalary * workedDays / 720
@@ -66,7 +58,7 @@ const health = (preNetSalary: number) => (preNetSalary * 0.04)
 const retf = (preNetSalary: number) => (preNetSalary * 0.11)
 
 const psf = (salary: number) => {
-
+    let fsp = 0
     let fspbase = salary / SMMLV
 
     if (fspbase >= 4 && fspbase < 16) {
@@ -87,19 +79,17 @@ const psf = (salary: number) => {
     }
 
     console.log(fspbase)
-
     return fsp
 }
 
 console.log('salario bruto: ', salary)
-console.log('salario base: ', showBaseSalary)
-console.log('Vacaciones: ', workVacation(showBaseSalary))
-console.log('Prima:', holidayBonus(showBaseSalary))
-console.log('Cesantias: ', severance(showBaseSalary))
-console.log('Intereses Cesantias: ', interestOnServerancePay(showBaseSalary))
-console.log('Aporte Pension: ', pension(showBaseSalary))
-console.log('Aporte Salud: ', health(showBaseSalary))
+console.log('salario base: ', paymentBasis)
+console.log('Vacaciones: ', workVacation(paymentBasis))
+console.log('Prima:', holidayBonus(paymentBasis))
+console.log('Cesantias: ', severance(paymentBasis))
+console.log('Intereses Cesantias: ', interestOnServerancePay(paymentBasis))
+console.log('Aporte Pension: ', pension(paymentBasis))
+console.log('Aporte Salud: ', health(paymentBasis))
 console.log('Fondo de solidaridad: ', psf(salary))
-console.log('Retefuente: ', retf(showBaseSalary))
-console.log('Salario neto:', netSalary(salary, 1))
-
+console.log('Retefuente: ', retf(paymentBasis))
+console.log('Salario neto:', netSalary(salary, "INDEPENDIENTE"))
