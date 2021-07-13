@@ -23,25 +23,21 @@ let fsp: number //Fondo de solidad pensional
 
 //indices: Ordinario 0, integral 1, independiente 2
 enum typeOfSalary {
-    independiente = 0.4,
-    integral = 0.7,
-    ordinario = 1
+    INDEPENDIENTE = 0.4,
+    INTEGRAL = 0.7,
+    ORDINARIO = 1
 }
 
-function baseSalary(salary: number, type: typeOfSalary) {
-    if (type == typeOfSalary.ordinario) {
-        let baseSalary = salary * typeOfSalary.ordinario
-        return baseSalary
-    }
-    return 0
+function baseSalary(salary: number, type: keyof typeof typeOfSalary) {
+    return salary * typeOfSalary[type]
 }
 
 ///SOlo para mostrar base en console
-let showBaseSalary = baseSalary(salary, 1)
+let showBaseSalary = baseSalary(salary, "INDEPENDIENTE")
 
 function netSalary(salary: number, type: number) {
 
-    let preNetSalary = baseSalary(salary, 1)
+    let preNetSalary = baseSalary(salary, "INDEPENDIENTE")
 
     return salary + workVacation(preNetSalary)
         + holidayBonus(preNetSalary)
