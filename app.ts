@@ -110,15 +110,15 @@ function psf(salary: number) {
     return fsp
 }
 
-console.log('salario bruto: ' + salary)
-console.log('salario base: ' + showBaseSalary)
-console.log('Vacaciones: ' + workVacation(showBaseSalary))
-console.log('Prima:' + holidayBonus(showBaseSalary))
-console.log('Cesantias: ' + severance(showBaseSalary))
-console.log('Intereses Cesantias: ' + interestOnServerancePay(showBaseSalary))
-console.log('Aporte Pension: ' + pension(showBaseSalary))
-console.log('Aporte Salud: ' + health(showBaseSalary))
-console.log('Fondo de solidaridad: ' + psf(salary))
-console.log('Retefuente: ' + retf(showBaseSalary))
-console.log('Salario neto:' + netSalary(salary, 1))
+console.log('salario bruto: ', salary)
+console.log('salario base: ', showBaseSalary)
+console.log('Vacaciones: ', workVacation(showBaseSalary))
+console.log('Prima:', holidayBonus(showBaseSalary))
+console.log('Cesantias: ', severance(showBaseSalary))
+console.log('Intereses Cesantias: ', interestOnServerancePay(showBaseSalary))
+console.log('Aporte Pension: ', pension(showBaseSalary))
+console.log('Aporte Salud: ', health(showBaseSalary))
+console.log('Fondo de solidaridad: ', psf(salary))
+console.log('Retefuente: ', retf(showBaseSalary))
+console.log('Salario neto:', netSalary(salary, 1))
 
