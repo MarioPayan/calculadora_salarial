@@ -3,6 +3,15 @@ let arl = 0.00522
 let ccf = 0.04
 let rtf = 0.11
 
+enum arlType {
+    risk1 = 0.00522,
+    risk2 = 0.01044,
+    risk3 = 0.02436,
+    risk4 = 0.04350,
+    risk5 = 0.06960,
+}
+
+
 
 const salary = 20000000
 let salaryCurrency = 0 //0 cop 1 usd
