@@ -28,14 +28,14 @@ enum typeOfSalary {
     ORDINARIO = 1
 }
 
-function baseSalary(salary: number, type: keyof typeof typeOfSalary) {
+const baseSalary = (salary: number, type: keyof typeof typeOfSalary) => {
     return salary * typeOfSalary[type]
 }
 
 ///SOlo para mostrar base en console
 let showBaseSalary = baseSalary(salary, "INDEPENDIENTE")
 
-function netSalary(salary: number, type: number) {
+const netSalary = (salary: number, type: number) => {
 
     let preNetSalary = baseSalary(salary, "INDEPENDIENTE")
 
@@ -51,45 +51,45 @@ function netSalary(salary: number, type: number) {
 
 }
 
-function workVacation(preNetSalary: number) {
+const workVacation = (preNetSalary: number) => {
     let workVacation = preNetSalary * workedDays / 720
     return workVacation
 }
 
-function holidayBonus(preNetSalary: number) {
+const holidayBonus = (preNetSalary: number) => {
     let holidayBonus = preNetSalary * workedDays / 360
     return holidayBonus
 }
 
-function severance(preNetSalary: number) {
+const severance = (preNetSalary: number) => {
     let severance = (preNetSalary * workedDays) / 360
     return severance
 }
 
-function interestOnServerancePay(preNetSalary: number) {
+const interestOnServerancePay = (preNetSalary: number) => {
     let interestOnServerancePay = (((preNetSalary * workedDays) / 360) * 0.12)
     return interestOnServerancePay
 }
 
 //Deductions 
 
-function pension(preNetSalary: number) {
+const pension = (preNetSalary: number) => {
     let pension = (preNetSalary * 0.04)
     return pension
 }
 
-function health(preNetSalary: number) {
+const health = (preNetSalary: number) => {
     let health = (preNetSalary * 0.04)
     return health
 }
 
-function retf(preNetSalary: number) {
+const retf = (preNetSalary: number) => {
     let retf = (preNetSalary * 0.11)
     return retf
 }
 
 
-function psf(salary: number) {
+const psf = (salary: number) => {
 
     let fspbase = salary / SMMLV
 
