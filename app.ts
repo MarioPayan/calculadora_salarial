@@ -16,7 +16,7 @@ enum arlType {
 const salary = 20000000
 let salaryCurrency = 0 //0 cop 1 usd
 let trm = 3850.46
-let workedDays = 30 //Hayar diferencia entre fechas
+let workedDays = 30 //Hallar diferencia entre fechas
 let SMMLV = 908526
 let fsp: number //Fondo de solidad pensional
 
@@ -28,9 +28,7 @@ enum typeOfSalary {
     ORDINARIO = 1
 }
 
-const baseSalary = (salary: number, type: keyof typeof typeOfSalary) => {
-    return salary * typeOfSalary[type]
-}
+const baseSalary = (salary: number, type: keyof typeof typeOfSalary) => salary * typeOfSalary[type]
 
 ///SOlo para mostrar base en console
 let showBaseSalary = baseSalary(salary, "INDEPENDIENTE")
@@ -51,43 +49,21 @@ const netSalary = (salary: number, type: number) => {
 
 }
 
-const workVacation = (preNetSalary: number) => {
-    let workVacation = preNetSalary * workedDays / 720
-    return workVacation
-}
+const workVacation = (preNetSalary: number) => preNetSalary * workedDays / 720
 
-const holidayBonus = (preNetSalary: number) => {
-    let holidayBonus = preNetSalary * workedDays / 360
-    return holidayBonus
-}
+const holidayBonus = (preNetSalary: number) => preNetSalary * workedDays / 360
 
-const severance = (preNetSalary: number) => {
-    let severance = (preNetSalary * workedDays) / 360
-    return severance
-}
+const severance = (preNetSalary: number) => (preNetSalary * workedDays) / 360
 
-const interestOnServerancePay = (preNetSalary: number) => {
-    let interestOnServerancePay = (((preNetSalary * workedDays) / 360) * 0.12)
-    return interestOnServerancePay
-}
+const interestOnServerancePay = (preNetSalary: number) => (((preNetSalary * workedDays) / 360) * 0.12)
 
 //Deductions 
 
-const pension = (preNetSalary: number) => {
-    let pension = (preNetSalary * 0.04)
-    return pension
-}
+const pension = (preNetSalary: number) => (preNetSalary * 0.04)
 
-const health = (preNetSalary: number) => {
-    let health = (preNetSalary * 0.04)
-    return health
-}
+const health = (preNetSalary: number) => (preNetSalary * 0.04)
 
-const retf = (preNetSalary: number) => {
-    let retf = (preNetSalary * 0.11)
-    return retf
-}
-
+const retf = (preNetSalary: number) => (preNetSalary * 0.11)
 
 const psf = (salary: number) => {
 
